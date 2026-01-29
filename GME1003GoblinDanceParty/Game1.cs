@@ -16,6 +16,7 @@ namespace GME1003GoblinDanceParty
         private int _numStars;          //how many stars?
         private List<int> _starsX;      //list of star x-coordinates
         private List<int> _starsY;      //list of star y-coordinates
+        private List<float> _starsR;      //list of star rotations
 
         private Texture2D _starSprite;  //the sprite image for our star
 
@@ -23,7 +24,6 @@ namespace GME1003GoblinDanceParty
         private Color _starColor;       //let's have fun with colour!!
         private float _starScale;       //star size
         private float _starTransparency;//star transparency
-        private float _starRotation;    //star rotation
 
 
         //***This is for the goblin. Ignore it.
@@ -44,11 +44,11 @@ namespace GME1003GoblinDanceParty
             _numStars = _rng.Next(100, 301);              //this is now a random number between 100 and 300
             _starsX = new List<int>();  //stars X coordinate
             _starsY = new List<int>();  //stars Y coordinate
+            _starsR = new List<float>();  //stars rotation 
 
             _starColor = new Color(128 + _rng.Next(0,129), 128 + _rng.Next(0, 129), 128 + _rng.Next(0, 129));                   //this is a "relatively" easy way to create random colors
             _starScale = _rng.Next(50, 100) / 200f; //this will affect the size of the stars
             _starTransparency = _rng.Next(25, 101)/100f;   //star transparency
-            _starRotation = _rng.Next(0, 101) / 100f;       //star rotation
 
             //use a separate for loop for each list - for practice
             //List of X coordinates
@@ -61,6 +61,13 @@ namespace GME1003GoblinDanceParty
             for (int i = 0; i < _numStars; i++)
             {
                 _starsY.Add(_rng.Next(0, 481)); //all star y-coordinates are between 0 and 480
+            }
+            //List of rotations
+            for (int i = 0; i < _numStars; i++)
+            {
+                 
+                _starsR.Add((float)_rng.NextDouble()); //Used google AI for this because I didn't know how to generate floats
+
             }
 
             //ToDo: List of Colors
@@ -88,7 +95,7 @@ namespace GME1003GoblinDanceParty
             music = Content.Load<Song>("chiptune");
             
             //if you're tired of the music player, comment this out!
-            MediaPlayer.Play(music);
+            //MediaPlayer.Play(music);
 
         }
 
@@ -106,7 +113,8 @@ namespace GME1003GoblinDanceParty
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Navy);
+            //changed background to navy cause i prefer it over cornflower
 
             
             _spriteBatch.Begin();
@@ -121,7 +129,7 @@ namespace GME1003GoblinDanceParty
                     new Vector2(_starsX[i], _starsY[i]),    //set the star position
                     null,                                   //ignore this
                     _starColor * _starTransparency,         //set colour and transparency
-                    _starRotation,                          //set rotation
+                    _starsR[i],                          //set rotation using list
                     new Vector2(_starSprite.Width / 2, _starSprite.Height / 2), //ignore this
                     new Vector2(_starScale, _starScale),    //set scale (same number 2x)
                     SpriteEffects.None,                     //ignore this
