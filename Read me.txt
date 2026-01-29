@@ -1,0 +1,9 @@
+I completed steps 1-5 but didn't do 6 because i preferred the starry night.
+
+I committed and pushed changes when I successfully completed a step.
+
+In total I committed and pushed about 7 times. 1 for the initial push, 5 for the steps, and finally 1 for this final push.
+
+Only troubles I had were the issue in-class when i asked you about the initial upload and the fact i didn't know how to generate random floats. 
+
+I did use google AI to get the NextDouble code to generate the floats. Other then that the rest was me.

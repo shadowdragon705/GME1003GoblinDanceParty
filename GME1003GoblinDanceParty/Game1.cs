@@ -106,7 +106,7 @@ namespace GME1003GoblinDanceParty
             music = Content.Load<Song>("chiptune");
             
             //if you're tired of the music player, comment this out!
-            //MediaPlayer.Play(music);
+            MediaPlayer.Play(music);
 
         }
 
@@ -148,7 +148,7 @@ namespace GME1003GoblinDanceParty
             }
             _spriteBatch.End();
 
-
+            //Decided not to do the last one because i like the starry night.  
 
             //***This is for the goblin. Ignore it for now.
             goblin.Draw(_spriteBatch);
