@@ -18,12 +18,12 @@ namespace GME1003GoblinDanceParty
         private List<int> _starsY;      //list of star y-coordinates
         private List<float> _starsR;    //list of star rotations
         private List<float> _starsT;    //List of star transparencies
+        private List<float> _starsS;    //List of star sizes
 
         private Texture2D _starSprite;  //the sprite image for our star
 
         private Random _rng;            //for all our random number needs
         private Color _starColor;       //let's have fun with colour!!
-        private float _starScale;       //star size
 
 
         //***This is for the goblin. Ignore it.
@@ -46,10 +46,10 @@ namespace GME1003GoblinDanceParty
             _starsY = new List<int>();  //stars Y coordinate
             _starsR = new List<float>();  //stars rotation 
             _starsT = new List<float>();  //stars transparency 
+            _starsS = new List<float>();  //star size
 
 
             _starColor = new Color(128 + _rng.Next(0,129), 128 + _rng.Next(0, 129), 128 + _rng.Next(0, 129));                   //this is a "relatively" easy way to create random colors
-            _starScale = _rng.Next(50, 100) / 200f; //this will affect the size of the stars
 
             //use a separate for loop for each list - for practice
             //List of X coordinates
@@ -70,21 +70,23 @@ namespace GME1003GoblinDanceParty
                 _starsR.Add((float)_rng.NextDouble()); //Used google AI for this because I didn't know how to generate floats
 
             }
-            //List of ghostlyness
+            //List of ghostlyness (transparency)
             for (int i = 0; i < _numStars; i++)
             {
 
                 _starsT.Add((float)_rng.NextDouble()); //NextDouble doesnt allow custom numbers from what i can tell. It only does 0 - 1.
 
             }
+            //List of sizes
+            for (int i = 0; i < _numStars; i++)
+            {
+
+                _starsS.Add((float)_rng.NextDouble()); // Same as the other 2 above this
+
+            }
 
             //ToDo: List of Colors
 
-            //ToDo: List of scale values
-
-            //ToDo: List of transparency values
-
-            //ToDo: List of rotation values
 
 
             base.Initialize();
@@ -139,7 +141,7 @@ namespace GME1003GoblinDanceParty
                     _starColor * _starsT[i],         //set colour and transparency
                     _starsR[i],                          //set rotation using list
                     new Vector2(_starSprite.Width / 2, _starSprite.Height / 2), //ignore this
-                    new Vector2(_starScale, _starScale),    //set scale (same number 2x)
+                    new Vector2(_starsS[i], _starsS[i]),    //set size, but x2
                     SpriteEffects.None,                     //ignore this
                     0f);                                    //ignore this
             }
